@@ -1,0 +1,22 @@
+name: 'PrussianBlue Base Theme'
+type: theme
+'base theme': stable9
+starterkit: true
+version: VERSION
+libraries:
+  - prussianblue_base/base
+  - prussianblue_base/messages
+  - core/normalize
+libraries-extend:
+  user/drupal.user:
+    - prussianblue_base/user
+  core/drupal.dropbutton:
+    - prussianblue_base/dropbutton
+  core/drupal.dialog:
+    - prussianblue_base/dialog
+  file/drupal.file:
+    - prussianblue_base/file
+  core/drupal.progress:
+    - prussianblue_base/progress
+core_version_requirement: ^10
+generator: 'starterkit_theme:10.0.3'
