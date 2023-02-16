@@ -1,6 +1,6 @@
 :root {
-  --container-width-wide: $pb-container-wide;
-  --container-width-narrow: $pb-container-narrow;
+  --container-width-wide: 1140px;
+  --container-width-narrow: 960px;
 }
 
 /*# sourceMappingURL=theme-variables.css.map */
