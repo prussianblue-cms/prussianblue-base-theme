@@ -8,6 +8,6 @@ $pb-container-wide: map.get($container-max-widths, xl);
 $pb-container-narrow: map.get($container-max-widths, lg);
 
 :root {
-  --container-width-wide: $pb-container-wide;
-  --container-width-narrow: $pb-container-narrow;
+  --container-width-wide: #{$pb-container-wide};
+  --container-width-narrow: #{$pb-container-narrow};
 }
