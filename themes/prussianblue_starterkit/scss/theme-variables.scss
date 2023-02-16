@@ -1,0 +1,13 @@
+@use "sass:map";
+@import "utilities/bootstrap-integration.scss";
+
+// *************************************************
+// **CONTAINER DIMENSIONS***************************
+// *************************************************
+$pb-container-wide: map.get($container-max-widths, xl);
+$pb-container-narrow: map.get($container-max-widths, lg);
+
+:root {
+  --container-width-wide: $pb-container-wide;
+  --container-width-narrow: $pb-container-narrow;
+}

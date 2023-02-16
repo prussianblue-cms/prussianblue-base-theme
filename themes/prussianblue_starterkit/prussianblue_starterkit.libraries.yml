@@ -1,0 +1,6 @@
+global-styling:
+  version: VERSION
+  css:
+    theme:
+      css/theme-variables.css: {}
+      fontawesome-subset/css/all.min.css: {}

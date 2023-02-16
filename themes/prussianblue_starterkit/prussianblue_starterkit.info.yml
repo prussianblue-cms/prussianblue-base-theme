@@ -8,6 +8,9 @@ logo: pb-logo.png
 dependencies:
   - cl_components
 
+libraries:
+  - prussianblue_starterkit/global-styling
+
 regions:
   branding: Branding
   primary_menu: Primary menu

@@ -9,4 +9,12 @@ sass-components:
 
 sass-components-watch:
 	# Similar to sass but keep watching
-	find . -type d -wholename "*/components/*" -exec sass --watch {} +
+	find . -type d -wholename "*/components/*" -exec sass --watch --poll {} +
+
+sass-libraries:
+	# Compile theme variables from sass
+	sass scss/theme-variables.scss css/theme-variables.css
+
+sass-libraries-watch:
+	# Compile theme variables from sass
+	sass --watch --poll scss/theme-variables.scss css/theme-variables.css

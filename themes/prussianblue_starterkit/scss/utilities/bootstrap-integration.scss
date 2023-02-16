@@ -1,22 +1,17 @@
-/**
-  * Not all of the Bootstrap framework will be used for the
-  * starterkit but some parts of it are very useful so there
-  * is no point in rewriting them.
-  *
-  * This file does two things:
-  * - Imports Bootstrap files with useful mixins
-  * - Provides variables needed by said mixins
-  */
+// Not all of the Bootstrap framework will be used for the
+// starterkit but some parts of it are very useful so there
+// is no point in rewriting them.
+//
+// This file does two things:
+// - Imports Bootstrap files with useful mixins
+// - Provides variables needed by said mixins
 
-/**
- * BOOTSTRAP STUFF YOU CAN USE:
- * @include make-container();   > Width 100%, padding left and rights to 1/2 of $container-padding-x, margin left and right auto. Sets element gutter vars.
- *
- * Breakpoints, see https://getbootstrap.com/docs/5.0/layout/breakpoints/#min-width
- * $grid-breakpoints
- * $container-max-widths
- */
-
+// BOOTSTRAP STUFF YOU CAN USE:
+// @include make-container();   > Width 100%, padding left and rights to 1/2 of $container-padding-x, margin left and right auto. Sets element gutter vars.
+//
+// Breakpoints, see https://getbootstrap.com/docs/5.0/layout/breakpoints/#min-width
+// $grid-breakpoints
+// $container-max-widths
 
 // *********************************************
 // BOOTSTRAP VARIABLES
@@ -58,6 +53,10 @@ $grid-gutter-width:           1.5rem !default;
 // Container padding
 
 $container-padding-x: $grid-gutter-width !default;
+
+// Prefix for :root CSS variables
+$variable-prefix:             bs- !default; // Deprecated in v5.2.0 for the shorter `$prefix`
+$prefix:                      $variable-prefix !default;
 
 // *********************************************
 // BOOTSTRAP PARTIALS

@@ -1,9 +1,9 @@
-@use "sass:map";
 @import "../../../scss/lib/bootstrap-partial.scss";
+@import "../../../scss/variables.scss";
 
 .page-header {
   @include make-container();
-  max-width: map.get($container-max-widths, sm);
+  max-width: var(--container-width-wide);
 
   display: flex;
   align-items: top;
@@ -11,7 +11,7 @@
 }
 
 .page-header__branding {
-  /* TODO: VARIABLE header height */
+  /* TODO: turn header height into variable */
   height: 80px;
 }
 

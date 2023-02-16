@@ -7,6 +7,31 @@
   * - Imports Bootstrap files with useful mixins
   * - Provides variables needed by said mixins
   */
+/**
+ * BOOTSTRAP STUFF YOU CAN USE:
+ * @include make-container();   > Width 100%, padding left and rights to 1/2 of $container-padding-x, margin left and right auto. Sets element gutter vars.
+ *
+ * Breakpoints, see https://getbootstrap.com/docs/5.0/layout/breakpoints/#min-width
+ * $grid-breakpoints
+ * $container-max-widths
+ */
+/**
+  * Not all of the Bootstrap framework will be used for the
+  * starterkit but some parts of it are very useful so there
+  * is no point in rewriting them.
+  *
+  * This file does two things:
+  * - Imports Bootstrap files with useful mixins
+  * - Provides variables needed by said mixins
+  */
+/**
+ * BOOTSTRAP STUFF YOU CAN USE:
+ * @include make-container();   > Width 100%, padding left and rights to 1/2 of $container-padding-x, margin left and right auto. Sets element gutter vars.
+ *
+ * Breakpoints, see https://getbootstrap.com/docs/5.0/layout/breakpoints/#min-width
+ * $grid-breakpoints
+ * $container-max-widths
+ */
 .page-header {
   --bs-gutter-x: 1.5rem;
   --bs-gutter-y: 0;
@@ -15,7 +40,7 @@
   padding-left: calc(var(--bs-gutter-x) * 0.5);
   margin-right: auto;
   margin-left: auto;
-  max-width: 540px;
+  max-width: 1140px;
   display: flex;
   align-items: top;
   justify-content: start;

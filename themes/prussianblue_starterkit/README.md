@@ -5,12 +5,37 @@ This module provides a starting point for theming a PrussianBlue website.
 It contains (or rather, will contain):
 
 - Templates for page, layouts and all the components (paragraphs, menus, blocks, everything).
-- Styles for typography, as well as font files.
 - Styles for all the components.
+- Styles for typography, as well as font files.
+- Fontawesome fonts and styles
 - Developer documentation.
 
+## How styles are distributed
 
-## Developer experience guides
+There are several places in which you can find styles:
+
+### Libraries, at scss/{name}.scss (that compile to css/{name}.css)
+
+- They are compiled to css/{name}.scss with `make sass-libraries`
+- They provide CSS variables on the :root element; these can be used by components
+- They are added to the theme by *.libraries.yml.
+- Their css output is sent directly to the browser.
+
+### Utilities, at scss/utilities/
+
+- They don't produce CSS output directly.
+- They are meant to be imported by components scss files.
+
+### Fontawesome, at ./fontawesome-subset
+
+- Produced by the Fontawesome 6 Subsetter
+- Open the fontawesome-subset.yml file with the app to see the icons available
+- Creating a subset requires a Pro subscription
+- Subsets are the easiest way to integrate FA without large files or complicated setups
+- FA classes are used directly in markup
+- Added to the theme by *.libraries.yml.
+
+## Developer experience guidelines
 
 While developing the base and starterkit themes for PrussianBlue my intention is to make the developer experience as enjoyable and effective as possible.
 
