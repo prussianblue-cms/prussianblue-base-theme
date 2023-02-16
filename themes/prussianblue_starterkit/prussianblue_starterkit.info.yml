@@ -1,0 +1,19 @@
+name: PrussianBlue starterkit
+type: theme
+description: 'Starterkit for PrussianBlue projects'
+core_version_requirement: ^10
+base theme: prussianblue_base
+logo: pb-logo.png
+
+dependencies:
+  - cl_components
+
+regions:
+  branding: Branding
+  primary_menu: Primary menu
+  secondary_menu: Secondary menu
+  system: System
+  breadcrumb: Breadcrumb
+  help: Help
+  content: Content
+  footer: Footer

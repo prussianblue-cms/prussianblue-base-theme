@@ -1,0 +1,21 @@
+.page-header {
+  display: flex;
+  align-items: top;
+  justify-content: start;
+}
+
+.page-header__branding {
+  /* TODO: VARIABLE header height */
+  height: 80px;
+}
+
+.page-header__branding .region-branding,
+.page-header__branding .block {
+  height: 100%;
+}
+
+.page-header__branding .block-system-branding-block img {
+  max-height: 100%;
+  width: auto;
+  max-width: 100%;
+}

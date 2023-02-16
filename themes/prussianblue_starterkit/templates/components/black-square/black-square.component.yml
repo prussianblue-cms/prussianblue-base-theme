@@ -1,0 +1,8 @@
+$schema: https://git.drupalcode.org/project/cl_components/-/raw/1.x/src/metadata.schema.json
+machineName: black-square
+name: Black Square
+status: BETA
+componentType: organism
+schemas:
+  props:
+    type: object

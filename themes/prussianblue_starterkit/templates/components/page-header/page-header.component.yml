@@ -1,0 +1,9 @@
+$schema: https://git.drupalcode.org/project/cl_components/-/raw/1.x/src/metadata.schema.json
+machineName: page-header
+name: Page Header
+status: BETA
+componentType: organism
+schemas:
+  props:
+    type: object
+
