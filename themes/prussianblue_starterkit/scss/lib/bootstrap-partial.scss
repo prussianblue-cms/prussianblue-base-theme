@@ -1,0 +1,68 @@
+/**
+  * Not all of the Bootstrap framework will be used for the
+  * starterkit but some parts of it are very useful so there
+  * is no point in rewriting them.
+  *
+  * This file does two things:
+  * - Imports Bootstrap files with useful mixins
+  * - Provides variables needed by said mixins
+  */
+
+/**
+ * BOOTSTRAP STUFF YOU CAN USE:
+ * @include make-container();   > Width 100%, padding left and rights to 1/2 of $container-padding-x, margin left and right auto. Sets element gutter vars.
+ *
+ * Breakpoints, see https://getbootstrap.com/docs/5.0/layout/breakpoints/#min-width
+ * $grid-breakpoints
+ * $container-max-widths
+ */
+
+
+// *********************************************
+// BOOTSTRAP VARIABLES
+// Source: bootstrap/scss/_variables.scss
+// *********************************************
+
+// Grid breakpoints
+//
+// Define the minimum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+) !default;
+
+// Grid containers
+//
+// Define the maximum width of `.container` for different screen sizes.
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1320px
+) !default;
+
+// Grid columns
+//
+// Set the number of columns and specify the width of the gutters.
+
+// $grid-columns:                12 !default;
+$grid-gutter-width:           1.5rem !default;
+// $grid-row-columns:            6 !default;
+
+// Container padding
+
+$container-padding-x: $grid-gutter-width !default;
+
+// *********************************************
+// BOOTSTRAP PARTIALS
+// Source: bootstrap/scss/_variables.scss
+// *********************************************
+
+@import "../../node_modules/bootstrap/scss/mixins/breakpoints";
+@import "../../node_modules/bootstrap/scss/mixins/container";

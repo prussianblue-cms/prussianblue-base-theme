@@ -1,0 +1,10 @@
+{
+  "name": "prussianblue_starterkit",
+  "version": "0.0.1",
+  "description": "Starterkit theme for the PrussianBlue CMS",
+  "author": "Noel Rivas",
+  "license": "GPL-2.0-or-later",
+  "devDependencies": {
+    "bootstrap": "^5.2.3"
+  }
+}

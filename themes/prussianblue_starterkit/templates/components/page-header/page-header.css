@@ -1,4 +1,21 @@
+/**
+  * Not all of the Bootstrap framework will be used for the
+  * starterkit but some parts of it are very useful so there
+  * is no point in rewriting them.
+  *
+  * This file does two things:
+  * - Imports Bootstrap files with useful mixins
+  * - Provides variables needed by said mixins
+  */
 .page-header {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  width: 100%;
+  padding-right: calc(var(--bs-gutter-x) * 0.5);
+  padding-left: calc(var(--bs-gutter-x) * 0.5);
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 540px;
   display: flex;
   align-items: top;
   justify-content: start;
