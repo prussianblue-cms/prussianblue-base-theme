@@ -13,8 +13,8 @@ sass-components-watch:
 
 sass-libraries:
 	# Compile theme variables from sass
-	sass scss/theme-variables.scss css/theme-variables.css
+	sass scss/main.scss css/main.css
 
 sass-libraries-watch:
 	# Compile theme variables from sass
-	sass --watch --poll scss/theme-variables.scss css/theme-variables.css
+	sass --watch --poll scss/main.scss css/main.css

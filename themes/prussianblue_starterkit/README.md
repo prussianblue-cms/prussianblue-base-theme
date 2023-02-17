@@ -17,9 +17,17 @@ There are several places in which you can find styles:
 ### Libraries, at scss/{name}.scss (that compile to css/{name}.css)
 
 - They are compiled to css/{name}.scss with `make sass-libraries`
+- They can also be compiled with the ddev command `ddev pb-dev-sass-libraries`. The flag `--watch` lets you watch for changes.
 - They provide CSS variables on the :root element; these can be used by components
 - They are added to the theme by *.libraries.yml.
 - Their css output is sent directly to the browser.
+
+### Single-directory components at templates/components/
+
+- Each component has its own Scss file
+- Components may have JS behaviors
+- Component styles are compiled with `make sass-components`
+- They can also be compiled with `ddev pb-dev-sass-components` and the `--watch` flag is also available.
 
 ### Utilities, at scss/utilities/
 
