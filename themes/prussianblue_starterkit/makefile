@@ -1,7 +1,10 @@
 info:
-	echo "This makefile contains commands to compile the theme assets"
-	echo "Available targets:"
-	echo " - sass"
+	# This makefile contains commands to compile the theme assets
+	# Available targets:
+	#  - sass-components
+	#  - sass-components-watch
+	#  - sass-libraries
+	#  - sass-libraries-watch
 
 sass-components:
 	# Find the sass files for components and compile them

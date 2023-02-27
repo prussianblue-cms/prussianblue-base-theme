@@ -11,4 +11,6 @@ $pb-container-narrow: map.get($container-max-widths, lg);
 :root {
   --container-width-wide: #{$pb-container-wide};
   --container-width-narrow: #{$pb-container-narrow};
+
+  --header-height: 80px; // The height of the branding section
 }

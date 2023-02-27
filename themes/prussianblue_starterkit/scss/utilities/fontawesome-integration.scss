@@ -1,0 +1,39 @@
+// @import "../../fontawesome-subset/scss/fontawesome.scss";
+@import "../../fontawesome-subset/scss/solid.scss";
+
+// Converts an element into a square containing an icon, with the given dimensions
+//
+// After including this mixin you need to:
+// — Include the icon in the FA subset
+// — Set the &:before content to the unicode code
+@mixin fa-square-icon($icon-size, $font-family) {
+  @include fa-icon-element($icon-size, $font-family);
+
+  --icon-size: #{$icon-size};
+  display: block;
+  position: relative;
+  overflow: hidden;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  padding-left: var(--icon-size);
+  box-sizing: border-box;
+
+  &:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+// Internal utilities - not meant for direct use
+// ********************************************************
+
+// Prepares an element as a recipient of a FontAwesome icon.
+@mixin fa-icon-element($icon-size, $font-family) {
+  &:before {
+    font-family: $font-family;
+    font-size: var(--icon-size);
+    line-height: 100%;
+    content: "\e1fe"; // the "notdef" icon
+  }
+}

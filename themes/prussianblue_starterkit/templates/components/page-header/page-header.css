@@ -1,3 +1,25 @@
+/*!
+ * Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com
+ * License - https://fontawesome.com/license (Commercial License)
+ * Copyright 2023 Fonticons, Inc.
+ */
+:root, :host {
+  --fa-style-family-classic: "Font Awesome 6 Pro";
+  --fa-font-solid: normal 900 1em/1 "Font Awesome 6 Pro";
+}
+
+@font-face {
+  font-family: "Font Awesome 6 Pro";
+  font-style: normal;
+  font-weight: 900;
+  font-display: block;
+  src: url("../webfonts/fa-solid-900.woff2") format("woff2"), url("../webfonts/fa-solid-900.ttf") format("truetype");
+}
+.fas,
+.fa-solid {
+  font-weight: 900;
+}
+
 .page-header {
   --bs-gutter-x: 1.5rem;
   --bs-gutter-y: 0;
@@ -10,22 +32,186 @@
   display: flex;
   align-items: top;
   justify-content: start;
+  padding: 1rem 0;
+  position: relative;
 }
-
-.page-header__branding {
-  /* TODO: turn header height into variable */
-  height: 80px;
+.page-header .page-header__branding {
+  height: var(--header-height);
 }
-
-.page-header__branding .region-branding,
-.page-header__branding .block {
+.page-header .page-header__branding .region-branding,
+.page-header .page-header__branding .region-branding .block-system-branding-block {
   height: 100%;
 }
-
-.page-header__branding .block-system-branding-block img {
+.page-header .page-header__branding .block-system-branding-block img {
   max-height: 100%;
   width: auto;
   max-width: 100%;
+}
+.page-header .page-header__navigation {
+  flex-grow: 1;
+}
+.page-header .page-header__navigation .region-primary-menu,
+.page-header .page-header__navigation .region-secondary-menu {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  height: calc(var(--header-height) / 2);
+}
+.page-header .page-header__navigation .region-primary-menu ul.menu,
+.page-header .page-header__navigation .region-secondary-menu ul.menu {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  margin: 0;
+  padding: 0;
+}
+.page-header .page-header__navigation .region-primary-menu ul.menu li.menu-item,
+.page-header .page-header__navigation .region-secondary-menu ul.menu li.menu-item {
+  margin-left: 1em;
+  list-style-type: none;
+  list-style-image: none;
+  padding: 0;
+  margin: 0;
+  margin-left: 1em;
+}
+.page-header .page-header__navigation .region-primary-menu ul.menu li.menu-item.menu-item--expanded,
+.page-header .page-header__navigation .region-secondary-menu ul.menu li.menu-item.menu-item--expanded {
+  background-color: red;
+}
+.page-header .page-header__navigation .region-primary-menu ul.menu li.menu-item a,
+.page-header .page-header__navigation .region-secondary-menu ul.menu li.menu-item a {
+  text-decoration: none;
+  display: block;
+  line-height: 100%;
+}
+.page-header .page-header__navigation .region-primary-menu ul.menu li.menu-item a:hover,
+.page-header .page-header__navigation .region-secondary-menu ul.menu li.menu-item a:hover {
+  text-decoration: underline;
+}
+.page-header .page-header__navigation .region-primary-menu ul.menu li.menu-item > ul.menu,
+.page-header .page-header__navigation .region-secondary-menu ul.menu li.menu-item > ul.menu {
+  display: none;
+}
+.page-header .page-header__navigation .region-primary-menu .menu--secondary-navigation,
+.page-header .page-header__navigation .region-secondary-menu .menu--secondary-navigation {
+  --icon-size: 1.25em;
+}
+.page-header .page-header__navigation .region-primary-menu .menu--secondary-navigation li.menu-item,
+.page-header .page-header__navigation .region-secondary-menu .menu--secondary-navigation li.menu-item {
+  margin: 0 calc(var(--icon-size) / 2);
+}
+.page-header .page-header__navigation .region-primary-menu .menu--secondary-navigation li.menu-item a,
+.page-header .page-header__navigation .region-secondary-menu .menu--secondary-navigation li.menu-item a {
+  --icon-size: 1.25rem;
+  display: block;
+  position: relative;
+  overflow: hidden;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  padding-left: var(--icon-size);
+  box-sizing: border-box;
+}
+.page-header .page-header__navigation .region-primary-menu .menu--secondary-navigation li.menu-item a:before,
+.page-header .page-header__navigation .region-secondary-menu .menu--secondary-navigation li.menu-item a:before {
+  font-family: var(--fa-style-family-brands);
+  font-size: var(--icon-size);
+  line-height: 100%;
+  content: "\e1fe";
+}
+.page-header .page-header__navigation .region-primary-menu .menu--secondary-navigation li.menu-item a:before,
+.page-header .page-header__navigation .region-secondary-menu .menu--secondary-navigation li.menu-item a:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.page-header .page-header__navigation .region-primary-menu .menu--secondary-navigation li.menu-item a.facebook:before,
+.page-header .page-header__navigation .region-secondary-menu .menu--secondary-navigation li.menu-item a.facebook:before {
+  content: "\f082";
+}
+.page-header .page-header__navigation .region-primary-menu .menu--secondary-navigation li.menu-item a.instagram:before,
+.page-header .page-header__navigation .region-secondary-menu .menu--secondary-navigation li.menu-item a.instagram:before {
+  content: "\f16d";
+}
+.page-header .page-header__navigation .region-primary-menu .menu--secondary-navigation li.menu-item a.twitter:before,
+.page-header .page-header__navigation .region-secondary-menu .menu--secondary-navigation li.menu-item a.twitter:before {
+  content: "\f081";
+}
+.page-header .page-header__navigation .region-primary-menu .menu--secondary-navigation li.menu-item a.linkedin:before,
+.page-header .page-header__navigation .region-secondary-menu .menu--secondary-navigation li.menu-item a.linkedin:before {
+  content: "\f08c";
+}
+.page-header .page-header__navigation .region-primary-menu .menu--secondary-navigation li.menu-item a.mastodon:before,
+.page-header .page-header__navigation .region-secondary-menu .menu--secondary-navigation li.menu-item a.mastodon:before {
+  content: "\f4f6";
+}
+.page-header .page-header__navigation .region-primary-menu .menu--secondary-navigation li.menu-item a.vimeo:before,
+.page-header .page-header__navigation .region-secondary-menu .menu--secondary-navigation li.menu-item a.vimeo:before {
+  content: "\f194";
+}
+.page-header .page-header__navigation .region-primary-menu .menu--secondary-navigation li.menu-item a.youtube:before,
+.page-header .page-header__navigation .region-secondary-menu .menu--secondary-navigation li.menu-item a.youtube:before {
+  content: "\f431";
+}
+.page-header .page-header__navigation .region-primary-menu .menu--main,
+.page-header .page-header__navigation .region-secondary-menu .menu--main {
+  --padding-y: 0.5em;
+  flex-grow: 1;
+}
+.page-header .page-header__navigation .region-primary-menu .menu--main > ul.menu > li.menu-item,
+.page-header .page-header__navigation .region-secondary-menu .menu--main > ul.menu > li.menu-item {
+  padding: var(--padding-y) 0;
+}
+.page-header .page-header__navigation .region-primary-menu .menu--main > ul.menu > li.menu-item--expanded.is-open,
+.page-header .page-header__navigation .region-secondary-menu .menu--main > ul.menu > li.menu-item--expanded.is-open {
+  position: relative;
+}
+.page-header .page-header__navigation .region-primary-menu .menu--main > ul.menu > li.menu-item--expanded.is-open > ul.menu,
+.page-header .page-header__navigation .region-secondary-menu .menu--main > ul.menu > li.menu-item--expanded.is-open > ul.menu {
+  position: absolute;
+  top: calc(1em + var(--padding-y) * 2);
+  right: 0;
+  min-width: 200px;
+  border: 1px solid grey;
+  display: block;
+}
+.page-header .page-header__navigation-toggler {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  --icon-size: 1.25rem;
+  display: block;
+  position: relative;
+  overflow: hidden;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  padding-left: var(--icon-size);
+  box-sizing: border-box;
+  display: none;
+}
+.page-header .page-header__navigation-toggler:before {
+  font-family: var(--fa-style-family-classic);
+  font-size: var(--icon-size);
+  line-height: 100%;
+  content: "\e1fe";
+}
+.page-header .page-header__navigation-toggler:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.page-header .page-header__navigation-toggler:before {
+  content: "\f0c9";
+}
+.page-header.debug .region {
+  outline: thin dotted red;
+}
+.page-header.debug ul.menu {
+  outline: thin dotted blue;
+  background-color: rgba(0, 0, 255, 0.2);
+}
+.page-header.debug ul.menu li.menu-item {
+  outline: thin dotted green;
+  background-color: rgba(0, 255, 0, 0.2);
 }
 
 /*# sourceMappingURL=page-header.css.map */

@@ -554,6 +554,53 @@ readers do not read off random characters that represent icons */
   white-space: nowrap;
   border-width: 0; }
 :root, :host {
+  --fa-style-family-brands: 'Font Awesome 6 Brands';
+  --fa-font-brands: normal 400 1em/1 'Font Awesome 6 Brands'; }
+
+@font-face {
+  font-family: 'Font Awesome 6 Brands';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("../webfonts/fa-brands-400.woff2") format("woff2"), url("../webfonts/fa-brands-400.ttf") format("truetype"); }
+
+.fab,
+.fa-brands {
+  font-weight: 400; }
+
+.fa-square-twitter:before {
+  content: "\f081"; }
+
+.fa-twitter-square:before {
+  content: "\f081"; }
+
+.fa-square-youtube:before {
+  content: "\f431"; }
+
+.fa-youtube-square:before {
+  content: "\f431"; }
+
+.fa-square-vimeo:before {
+  content: "\f194"; }
+
+.fa-vimeo-square:before {
+  content: "\f194"; }
+
+.fa-square-facebook:before {
+  content: "\f082"; }
+
+.fa-facebook-square:before {
+  content: "\f082"; }
+
+.fa-linkedin:before {
+  content: "\f08c"; }
+
+.fa-instagram:before {
+  content: "\f16d"; }
+
+.fa-mastodon:before {
+  content: "\f4f6"; }
+:root, :host {
   --fa-style-family-classic: 'Font Awesome 6 Pro';
   --fa-font-solid: normal 900 1em/1 'Font Awesome 6 Pro'; }
 

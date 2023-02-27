@@ -1,5 +1,19 @@
-projectName: Unsaved Project
+projectName: fontawesome-subset
 version: 6.3.0
 icons:
   - bars:
       - sharp-regular
+  - square-twitter:
+      - brands
+  - square-facebook:
+      - brands
+  - square-vimeo:
+      - brands
+  - square-youtube:
+      - brands
+  - linkedin:
+      - brands
+  - instagram:
+      - brands
+  - mastodon:
+      - brands

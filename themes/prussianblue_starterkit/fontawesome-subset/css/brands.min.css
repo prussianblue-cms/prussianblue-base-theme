@@ -1,0 +1,6 @@
+/*!
+ * Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com
+ * License - https://fontawesome.com/license (Commercial License)
+ * Copyright 2023 Fonticons, Inc.
+ */
+:host,:root{--fa-style-family-brands:"Font Awesome 6 Brands";--fa-font-brands:normal 400 1em/1 "Font Awesome 6 Brands"}@font-face{font-family:"Font Awesome 6 Brands";font-style:normal;font-weight:400;font-display:block;src:url(../webfonts/fa-brands-400.woff2) format("woff2"),url(../webfonts/fa-brands-400.ttf) format("truetype")}.fa-brands,.fab{font-weight:400}.fa-square-twitter:before,.fa-twitter-square:before{content:"\f081"}.fa-square-youtube:before,.fa-youtube-square:before{content:"\f431"}.fa-square-vimeo:before,.fa-vimeo-square:before{content:"\f194"}.fa-facebook-square:before,.fa-square-facebook:before{content:"\f082"}.fa-linkedin:before{content:"\f08c"}.fa-instagram:before{content:"\f16d"}.fa-mastodon:before{content:"\f4f6"}

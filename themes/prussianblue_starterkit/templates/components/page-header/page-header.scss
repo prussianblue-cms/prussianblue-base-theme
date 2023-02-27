@@ -1,4 +1,29 @@
 @import "../../../scss/utilities/bootstrap-integration.scss";
+@import "../../../scss/utilities/fontawesome-integration.scss";
+
+// THIS IS A COMPLEX COMPONENT, BUT DON'T DESPAIR
+
+// I decided not to break this one into smaller components
+// because the contents of the header don't really repeat elsewhere
+// in the page and it would mean making things more complex
+
+// The hierarchy of the markup produced by Drupal is:
+// header.page-header
+// -- .page-header__branding
+// -- -- .region-branding
+// -- -- -- .block-system-branding-block
+// -- -- -- -- a.site-logo
+// -- -- -- -- -- img
+// -- .page-header__navigation
+// -- -- .navbar.navbar--secondary
+// -- -- -- .region-secondary-menu
+// -- -- -- -- .menu--account (Drupal menu)
+// -- -- -- -- .menu--secondary-navigation (Drupal menu, social networks)
+// -- -- .navbar.navbar--primary
+// -- -- -- .region-primary-menu
+// -- -- -- -- .menu--main (Drupal menu)
+// -- -- -- -- [language switch and search button will be here eventually]
+
 
 .page-header {
   @include make-container();
@@ -7,20 +32,179 @@
   display: flex;
   align-items: top;
   justify-content: start;
-}
+  padding: 1rem 0;
 
-.page-header__branding {
-  /* TODO: turn header height into variable */
-  height: 80px;
-}
+  position:relative; // allow nav toggler to use absolute positioning
 
-.page-header__branding .region-branding,
-.page-header__branding .block {
-  height: 100%;
-}
+  .page-header__branding {
+    height: var(--header-height);
 
-.page-header__branding .block-system-branding-block img {
-  max-height: 100%;
-  width: auto;
-  max-width: 100%;
+    .region-branding,
+    .region-branding .block-system-branding-block {
+      height: 100%;
+    }
+
+    .block-system-branding-block img {
+      max-height: 100%;
+      width: auto;
+      max-width: 100%;
+    }
+  }
+
+  .page-header__navigation {
+    flex-grow: 1;
+
+    .region-primary-menu,
+    .region-secondary-menu {
+      display: flex;
+      align-items: center;
+      justify-content: end;
+      height: calc(var(--header-height) / 2);
+
+      // Resets that apply to all menus
+      // ******************************************
+      ul.menu {
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        margin: 0;
+        padding: 0;
+
+        li.menu-item {
+          margin-left: 1em;
+          list-style-type: none;
+          list-style-image: none;
+          padding: 0;
+          margin: 0;
+          margin-left: 1em;
+
+          &.menu-item--expanded {
+            // TODO: add drop-down indicator
+            background-color: red;
+          }
+
+          a {
+            text-decoration: none;
+            display: block;
+            line-height: 100%; // make the links 1em in height to allow precise control of dimensions
+          }
+
+          a:hover {
+            text-decoration: underline;
+          }
+
+          // Hide the second-level menu by default
+          > ul.menu {
+            display: none;
+          }
+        }
+      }
+
+
+      // User account menu
+      // ******************************************
+
+      // Social networks menu (secondary)
+      // ******************************************
+      .menu--secondary-navigation {
+        --icon-size: 1.25em;
+
+        li.menu-item {
+          margin: 0 calc(var(--icon-size) / 2);
+
+          a {
+            @include fa-square-icon(1.25rem, var(--fa-style-family-brands));
+
+            &.facebook:before {
+              content: "\f082";
+            }
+
+            &.instagram:before {
+              content: "\f16d";
+            }
+
+            &.twitter:before {
+              content: "\f081";
+            }
+
+            &.linkedin:before {
+              content: "\f08c";
+            }
+
+            &.mastodon:before {
+              content: "\f4f6";
+            }
+
+            &.vimeo:before {
+              content: "\f194";
+            }
+
+            &.youtube:before {
+              content: "\f431";
+            }
+          }
+        }
+      }
+
+      // Main menu
+      // ******************************************
+      .menu--main {
+        --padding-y: 0.5em;
+        flex-grow: 1;
+
+        > ul.menu {
+          > li.menu-item {
+            padding: var(--padding-y) 0;
+          }
+
+          > li.menu-item--expanded.is-open {
+
+            // Make the parent item the frame of reference for the submenu
+            position: relative;
+
+            > ul.menu {
+              position: absolute;
+              top: calc(1em + (var(--padding-y) * 2));
+              right: 0;
+              min-width: 200px;
+              border: 1px solid grey;
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .page-header__navigation-toggler {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+
+    @include fa-square-icon(1.25rem, var(--fa-style-family-classic));
+    &:before {
+      content: "\f0c9";
+    }
+
+    // Override the display set by fa-square-icon
+    display: none;
+  }
+
+  // Add the debug class to the .page-header component to
+  // see outlines and make layout style development easier
+  &.debug {
+    .region {
+      outline: thin dotted red;
+    }
+
+    ul.menu {
+      outline: thin dotted blue;
+      background-color: rgba(0, 0, 255, .2);
+
+      li.menu-item {
+        outline: thin dotted green;
+        background-color: rgba(0, 255, 0, .2);
+      }
+    }
+  }
 }
