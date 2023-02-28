@@ -1,0 +1,46 @@
+@use "sass:color";
+@use "sass:math";
+
+:root {
+  // Named colors
+  $purplish-blue: #3D5A80;
+  $orange: #EE6C4D;
+  $gun-metal: #293241;
+
+  $color-primary: $purplish-blue;
+  $color-accent: $orange;
+  $color-text: $gun-metal;
+
+  // Create the lighter shades of the primary color
+  // *********************************************
+  @for $i from 1 through 4 {
+    $step: $i * 10;
+    $lightness: math.percentage((5 - $i) * 0.225); // Should end in 90%
+    --color-primary-#{$step}: #{color.scale($color-primary, $lightness: $lightness)};
+  }
+  --color-primary-50: #{$color-primary};
+  @for $i from 6 through 9 {
+    $step: $i * 10;
+    $lightness: math.percentage(($i - 5) * -.225); // Should end in 90%
+    --color-primary-#{$step}: #{color.scale($color-primary, $lightness: $lightness)};
+  }
+
+  // Create the lighter shades of the accent color
+  // *********************************************
+  @for $i from 1 through 4 {
+    $step: $i * 10;
+    $lightness: math.percentage((5 - $i) * 0.225); // Should end in 90%
+    --color-accent-#{$step}: #{color.scale($color-accent, $lightness: $lightness)};
+  }
+  --color-accent-50: #{$color-accent};
+  @for $i from 6 through 9 {
+    $step: $i * 10;
+    $lightness: math.percentage(($i - 5) * -.225); // Should end in 90%
+    --color-accent-#{$step}: #{color.scale($color-accent, $lightness: $lightness)};
+  }
+
+  // Text colors
+  --color-text-background: #{color.scale($color-text, $lightness: 95%)};
+  --color-text-foreground: #{$color-text}; // Note that this variable is referenced in _typography.scss, where it sets the text color for <body>
+  --color-text-foreground-light: #{color.scale($color-text, $lightness: 25%)};
+}

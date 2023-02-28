@@ -1,5 +1,9 @@
-// @import "../../fontawesome-subset/scss/fontawesome.scss";
 @import "../../fontawesome-subset/scss/solid.scss";
+
+// NOTE: There is no need to import the fontawesome.scss file.
+// Doing so will result in adding all the fa-* classess to the
+// output of the files that import this one.
+// @import "../../fontawesome-subset/scss/fontawesome.scss";
 
 // Converts an element into a square containing an icon, with the given dimensions
 //
@@ -25,10 +29,9 @@
   }
 }
 
-// Internal utilities - not meant for direct use
-// ********************************************************
-
-// Prepares an element as a recipient of a FontAwesome icon.
+// Prepares an element as a recipient of a FontAwesome icon
+// but does nothing in terms of settind dimensions, positioning
+// or other styles
 @mixin fa-icon-element($icon-size, $font-family) {
   &:before {
     font-family: $font-family;
