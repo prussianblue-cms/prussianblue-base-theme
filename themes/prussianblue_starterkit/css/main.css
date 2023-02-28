@@ -21,6 +21,7 @@ body {
   font-family: var(--font-body-family), sans-serif;
   font-weight: var(--font-body-weight);
   line-height: var(--font-line-height);
+  color: var(--color-text-foreground);
 }
 
 p {
@@ -66,6 +67,31 @@ small, .text_small {
 :root {
   --container-width-wide: 1140px;
   --container-width-narrow: 960px;
+  --header-height: 80px;
+}
+
+:root {
+  --color-primary-10: #e9eef5;
+  --color-primary-20: #b8c8dd;
+  --color-primary-30: #87a3c6;
+  --color-primary-40: #577daf;
+  --color-primary-50: #3D5A80;
+  --color-primary-60: #2f4663;
+  --color-primary-70: #223246;
+  --color-primary-80: #141d2a;
+  --color-primary-90: #06090d;
+  --color-accent-10: #fdf0ed;
+  --color-accent-20: #f9cfc5;
+  --color-accent-30: #f6ae9d;
+  --color-accent-40: #f28d75;
+  --color-accent-50: #EE6C4D;
+  --color-accent-60: #df3c15;
+  --color-accent-70: #9e2b0f;
+  --color-accent-80: #5d1909;
+  --color-accent-90: #1d0803;
+  --color-text-background: #f3f4f7;
+  --color-text-foreground: #293241;
+  --color-text-foreground-light: #50627f;
 }
 
 /*# sourceMappingURL=main.css.map */
