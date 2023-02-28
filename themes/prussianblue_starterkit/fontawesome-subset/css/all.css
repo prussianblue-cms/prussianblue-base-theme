@@ -527,6 +527,9 @@ readers do not read off random characters that represent icons */
 .fa-navicon::before {
   content: "\f0c9"; }
 
+.fa-caret-down::before {
+  content: "\f0d7"; }
+
 .fa-notdef::before {
   content: "\e1fe"; }
 
