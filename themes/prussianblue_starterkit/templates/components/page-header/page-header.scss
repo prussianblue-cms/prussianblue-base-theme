@@ -1,3 +1,5 @@
+@use "sass:color";
+
 @import "../../../scss/utilities/bootstrap-integration.scss";
 @import "../../../scss/utilities/fontawesome-integration.scss";
 
@@ -24,10 +26,22 @@
 // -- -- -- -- .menu--main (Drupal menu)
 // -- -- -- -- [language switch and search button will be here eventually]
 
-
 .page-header {
+
+  // Local variables
+  // ******************************************
+
+  --social-media-icons-size: 1.25em;
+  --main-menu-link-spacing-x: 2em; // the horizontal space between first-level main menu links
+  --main-menu-active-border-weight: 4px; // the weight of the border that underlines active items
+  --main-menu-border-radius: 3px; // The border radius of the submenu container and the top-level menu links when open
+  --main-menu-caret-icon-size: 1em;
+  --main-menu-submenu-min-width: 200px;
+  --main-menu-submenu-shadow-blur: 5px;
+
   @include make-container();
   max-width: var(--container-width-wide);
+  z-index: 1;
 
   display: flex;
   align-items: top;
@@ -78,24 +92,26 @@
           margin: 0;
           margin-left: 1em;
 
-          &.menu-item--expanded {
-            // TODO: add drop-down indicator
-            background-color: red;
-          }
-
           a {
+            color: var(--color-text-foreground);
             text-decoration: none;
             display: block;
             line-height: 100%; // make the links 1em in height to allow precise control of dimensions
-          }
 
-          a:hover {
-            text-decoration: underline;
+            &:hover,
+            &.is-active {
+              text-decoration: underline;
+              color: var(--color--text-foreground-light);
+            }
           }
 
           // Hide the second-level menu by default
           > ul.menu {
-            display: none;
+
+            // Hide menu levels below this
+            ul.menu {
+              display: none;
+            }
           }
         }
       }
@@ -107,10 +123,9 @@
       // Social networks menu (secondary)
       // ******************************************
       .menu--secondary-navigation {
-        --icon-size: 1.25em;
 
         li.menu-item {
-          margin: 0 calc(var(--icon-size) / 2);
+          margin: 0 calc(var(--social-media-icons-size) / 2);
 
           a {
             @include fa-square-icon(1.25rem, var(--fa-style-family-brands));
@@ -149,26 +164,101 @@
       // Main menu
       // ******************************************
       .menu--main {
-        --padding-y: 0.5em;
         flex-grow: 1;
 
+        // First level items
         > ul.menu {
           > li.menu-item {
-            padding: var(--padding-y) 0;
+            padding: 0 calc(var(--main-menu-link-spacing-x) / 4);
+            margin: 0 calc(var(--main-menu-link-spacing-x) / 4);
+            border-top-left-radius: var(--main-menu-border-radius);
+            border-top-right-radius: var(--main-menu-border-radius);
+            color: var(--color-text-foreground-light);
+
+            &:last-child {
+              margin-right: calc(var(--main-menu-link-spacing-x) / 4 * -1);
+            }
+
+            > a {
+              box-sizing: border-box;
+              text-decoration: none;
+              border-bottom: var(--main-menu-active-border-weight) solid transparent;
+              padding: calc(var(--main-menu-link-spacing-x) / 4) 0;
+
+              &.is-active {
+                border-bottom-color: var(--color-accent-50);
+              }
+            }
           }
 
-          > li.menu-item--expanded.is-open {
+          // Second level menus
+          > li.menu-item--expanded {
+
+            cursor: pointer;
 
             // Make the parent item the frame of reference for the submenu
             position: relative;
+            padding-right: calc(var(--main-menu-caret-icon-size) + (var(--main-menu-link-spacing-x) / 4));
+
+            // Add the caret icon
+            @include fa-icon-element(1em, var(--fa-style-family-classic));
+            &:before {
+              transition: transform 0.25s;
+              position: absolute;
+              right: calc(var(--main-menu-link-spacing-x) / 4);
+              top: 50%;
+              margin-top: calc(var(--main-menu-caret-icon-size) / 2 * -1);
+              pointer-events: none;
+              content: "\f0d7";
+            }
 
             > ul.menu {
-              position: absolute;
-              top: calc(1em + (var(--padding-y) * 2));
-              right: 0;
-              min-width: 200px;
-              border: 1px solid grey;
               display: block;
+              position: absolute;
+              right: 0;
+              transition: opacity 0.25s, transform 0.15s;
+              transform: translateY(-50px);
+              opacity: 0;
+              pointer-events: none;
+              min-width: var(--main-menu-submenu-min-width);
+              box-shadow: 0 0 var(--main-menu-submenu-shadow-blur) var(--color-primary-30);
+              background-color: var(--color-text-background);
+              border: 1px solid var(--color-primary-20);
+              border-radius: var(--main-menu-border-radius);
+              border-top-right-radius: 0;
+              padding: calc(var(--main-menu-link-spacing-x) / 2);
+
+              > li.menu-item {
+                padding: calc(var(--main-menu-link-spacing-x) / 4);
+                margin: calc(var(--main-menu-link-spacing-x) / 4);
+
+                &:hover {
+                  background-color: var(--color-primary-10);
+                }
+
+                &:first-child {
+                  margin-top: 0;
+                }
+
+                &:last-child {
+                  margin-bottom: 0;
+                }
+              }
+            }
+          }
+
+          > li.menu-item--expanded.is-open {
+            background-color: var(--color-primary-20);
+            color: var(--color-text-foreground);
+
+            &:before {
+              transform: rotate(180deg);
+            }
+
+            > ul.menu {
+              opacity: 1;
+              transform: translateY(0);
+              pointer-events: all;
             }
           }
         }
