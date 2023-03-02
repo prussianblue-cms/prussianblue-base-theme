@@ -2,6 +2,11 @@
 @use "sass:math";
 
 // TODO: ADDTODOCS
+
+// The main purpose of this file is to set the color palette for the site
+// Note that the variables are css custom properties — not Sass variables —
+// which means that you can't transform the colors in other Sass files, since
+// the CSS variables are not present in that context.
 :root {
   // Named colors
   $purplish-blue: #3D5A80;
@@ -12,8 +17,24 @@
   $color-accent: $orange;
   $color-text: $gun-metal;
 
-  // Create the lighter shades of the primary color
+  // Text colors
+  --color-text-background: #{color.scale($color-text, $lightness: 95%)};
+  --color-text-foreground: #{$color-text}; // Note that this variable is referenced in _typography.scss, where it sets the text color for <body>
+  --color-text-foreground-light: #{color.scale($color-text, $lightness: 25%)};
+
+  // Our white, our black
+  --color-white: #{color.scale($color-text, $lightness: 99%)};
+  --color-black: #{color.scale($color-text, $lightness: -90%)};
+
+  // Create the shades of the primary color
   // *********************************************
+
+  // This code will create a scale that goes from
+
+  // --color-primary-10 (lightest)
+  // to
+  // --color-primary-90 (darkest)
+
   @for $i from 1 through 4 {
     $step: $i * 10;
     $lightness: math.percentage((5 - $i) * 0.225); // Should end in 90%
@@ -26,8 +47,15 @@
     --color-primary-#{$step}: #{color.scale($color-primary, $lightness: $lightness)};
   }
 
-  // Create the lighter shades of the accent color
+  // Create the shades of the accent color
   // *********************************************
+
+  // This code will create a scale that goes from
+
+  // --color-accent-10 (lightest)
+  // to
+  // --color-accent-90 (darkest)
+
   @for $i from 1 through 4 {
     $step: $i * 10;
     $lightness: math.percentage((5 - $i) * 0.225); // Should end in 90%
@@ -40,12 +68,4 @@
     --color-accent-#{$step}: #{color.scale($color-accent, $lightness: $lightness)};
   }
 
-  // Text colors
-  --color-text-background: #{color.scale($color-text, $lightness: 95%)};
-  --color-text-foreground: #{$color-text}; // Note that this variable is referenced in _typography.scss, where it sets the text color for <body>
-  --color-text-foreground-light: #{color.scale($color-text, $lightness: 25%)};
-
-  // Our white, our black
-  --color-white: #{color.scale($color-text, $lightness: 95%)};
-  --color-black: #{color.scale($color-text, $lightness: -90%)};
 }

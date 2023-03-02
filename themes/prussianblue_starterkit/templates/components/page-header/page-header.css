@@ -20,7 +20,7 @@
   font-weight: 900;
 }
 
-.page-header {
+:root {
   --header-height: 80px;
   --header-padding: 1rem;
   --header-height-mobile: 60px;
@@ -32,6 +32,42 @@
   --main-menu-caret-icon-size: 1em;
   --main-menu-submenu-min-width: 200px;
   --main-menu-submenu-shadow-blur: 5px;
+}
+@media (min-width: 768px) {
+  :root {
+    --header-total-height-current: calc(var(--header-height) + (var(--header-padding) * 2));
+  }
+}
+@media (max-width: 767.98px) {
+  :root {
+    --header-total-height-current: calc(var(--header-height-mobile) + (var(--header-padding-mobile) * 2));
+  }
+}
+
+/**
+ * SIDE EFFECT WARNING!
+ * The padding-top of the .layout-container.page element
+ * is set by the page-header component.
+ * This should be its only external side effect, and all other
+ * styles should apply to the component only.
+ */
+.layout-container.page {
+  padding-top: var(--header-total-height-current);
+}
+
+.page-header__positioning-wrapper {
+  z-index: 1;
+  position: fixed;
+  width: 100%;
+  max-width: unset;
+}
+
+.page-header__background {
+  background-color: var(--color-white);
+  border-bottom: 1px solid var(--color-primary-10);
+}
+
+.page-header {
   --bs-gutter-x: 1.5rem;
   --bs-gutter-y: 0;
   width: 100%;
@@ -39,7 +75,7 @@
   padding-left: calc(var(--bs-gutter-x) * 0.5);
   margin-right: auto;
   margin-left: auto;
-  z-index: 1;
+  margin-top: calc(-1 * var(--header-total-height-current));
 }
 @media (min-width: 1200px) {
   .page-header {
@@ -345,6 +381,12 @@
   }
   .page-header .page-header__navigation .menu--secondary-navigation ul.menu li.menu-item {
     margin: 0 0.5em;
+  }
+  .page-header .page-header__navigation .menu--secondary-navigation ul.menu li.menu-item a {
+    color: var(--color-text-foreground);
+  }
+  .page-header .page-header__navigation .menu--secondary-navigation ul.menu li.menu-item a:hover .page-header .page-header__navigation .menu--secondary-navigation ul.menu li.menu-item a:active {
+    color: var(--color-text-foreground-light);
   }
   .page-header .page-header__navigation .menu--secondary-navigation ul.menu li.menu-item:first-child {
     margin-left: 0;

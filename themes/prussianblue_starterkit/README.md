@@ -40,6 +40,7 @@ There are several places in which you can find styles:
 - Open the fontawesome-subset.yml file with the app to see the icons available
 - Creating a subset requires a Pro subscription
 - Subsets are the easiest way to integrate FA without large files or complicated setups
+// TODO: ADDTODOCS (this may no longer be true; FA is used via Sass)
 - FA classes are used directly in markup
 - Added to the theme by *.libraries.yml.
 

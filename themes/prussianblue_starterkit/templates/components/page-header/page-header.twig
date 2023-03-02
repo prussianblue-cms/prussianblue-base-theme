@@ -1,25 +1,29 @@
-<header class="page-header" role="banner">
-  <div class="page-header__branding">
-    {% block branding %}
-      <strong>Branding.</strong>
-    {% endblock %}
+<div class="page-header__positioning-wrapper">
+  <div class="page-header__background">
+    <header class="page-header" role="banner">
+      <div class="page-header__branding">
+        {% block branding %}
+          <strong>Branding.</strong>
+        {% endblock %}
+      </div>
+      <div class="page-header__navigation">
+
+        <div class="navbar navbar--secondary">
+          {% block secondary_menu %}
+            <strong>Secondary menu.</strong>
+          {% endblock %}
+        </div>
+
+        <div class="navbar navbar--primary">
+          {% block primary_menu %}
+            <strong>Primary menu.</strong>
+          {% endblock %}
+        </div>
+
+      </div>
+
+      <div class="page-header__navigation-toggler">
+      </div>
+    </header>
   </div>
-  <div class="page-header__navigation">
-
-    <div class="navbar navbar--secondary">
-      {% block secondary_menu %}
-        <strong>Secondary menu.</strong>
-      {% endblock %}
-    </div>
-
-    <div class="navbar navbar--primary">
-      {% block primary_menu %}
-        <strong>Primary menu.</strong>
-      {% endblock %}
-    </div>
-
-  </div>
-
-  <div class="page-header__navigation-toggler">
-  </div>
-</header>
+</div>
