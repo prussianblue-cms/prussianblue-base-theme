@@ -65,3 +65,27 @@ $prefix:                      $variable-prefix !default;
 
 @import "../../node_modules/bootstrap/scss/mixins/breakpoints";
 @import "../../node_modules/bootstrap/scss/mixins/container";
+
+// *********************************************
+// PRUSSIANBLUE MIXINS
+// Use these to configure fluid, narrow or wide containers
+// *********************************************
+// TODO: ADDTODOCS
+@mixin wide-container() {
+  @include make-container();
+
+  @include media-breakpoint-up(xl) {
+    max-width: map.get($container-max-widths, xl);
+  }
+
+  @include media-breakpoint-down(xl) {
+    max-width: map.get($container-max-widths, lg);
+  }
+
+  @include media-breakpoint-down(lg) {
+    max-width: 100%;
+    padding-left: calc($grid-gutter-width / 2);
+    padding-right: calc($grid-gutter-width / 2);
+    box-sizing: border-box;
+  }
+}

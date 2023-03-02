@@ -1,4 +1,4 @@
-@use "sass:color";
+@use "sass:map";
 
 @import "../../../scss/utilities/bootstrap-integration.scss";
 @import "../../../scss/utilities/fontawesome-integration.scss";
@@ -26,33 +26,38 @@
 // -- -- -- -- .menu--main (Drupal menu)
 // -- -- -- -- [language switch and search button will be here eventually]
 
+// The breakpoint at which the menu is converted
+// to a hamburger menu
+$mobile-menu-breakpoint: md;
+$toggler-icon-size: 1.5rem;
+
+// ALL RESOLUTIONS
 .page-header {
 
   // Local variables
   // ******************************************
+  // TODO: ADDTODOCS (local variables should always de declared at the top)
 
+  --header-height: 80px;
+  --header-padding: 1rem;
+  --header-height-mobile: 60px;
+  --header-padding-mobile: 0.5rem;
   --social-media-icons-size: 1.25em;
   --main-menu-link-spacing-x: 2em; // the horizontal space between first-level main menu links
   --main-menu-active-border-weight: 4px; // the weight of the border that underlines active items
-  --main-menu-border-radius: 3px; // The border radius of the submenu container and the top-level menu links when open
+  --menu-item-border-radius: 3px; // The border radius of the submenu container and the top-level menu links when open
   --main-menu-caret-icon-size: 1em;
   --main-menu-submenu-min-width: 200px;
   --main-menu-submenu-shadow-blur: 5px;
 
-  @include make-container();
-  max-width: var(--container-width-wide);
+
+
+  @include wide-container();
+
+  // Stay over page content
   z-index: 1;
 
-  display: flex;
-  align-items: top;
-  justify-content: start;
-  padding: 1rem 0;
-
-  position:relative; // allow nav toggler to use absolute positioning
-
   .page-header__branding {
-    height: var(--header-height);
-
     .region-branding,
     .region-branding .block-system-branding-block {
       height: 100%;
@@ -65,236 +70,398 @@
     }
   }
 
-  .page-header__navigation {
-    flex-grow: 1;
+  // Social networks menu (secondary)
+  // ******************************************
+  .menu--secondary-navigation {
 
-    .region-primary-menu,
-    .region-secondary-menu {
-      display: flex;
-      align-items: center;
-      justify-content: end;
-      height: calc(var(--header-height) / 2);
+    li.menu-item {
+      margin: 0 calc(var(--social-media-icons-size) / 2);
 
-      // Resets that apply to all menus
-      // ******************************************
-      ul.menu {
+      a {
+        @include fa-square-icon(1.25rem, var(--fa-style-family-brands));
+
+        &.facebook:before {
+          content: "\f082";
+        }
+
+        &.instagram:before {
+          content: "\f16d";
+        }
+
+        &.twitter:before {
+          content: "\f081";
+        }
+
+        &.linkedin:before {
+          content: "\f08c";
+        }
+
+        &.mastodon:before {
+          content: "\f4f6";
+        }
+
+        &.vimeo:before {
+          content: "\f194";
+        }
+
+        &.youtube:before {
+          content: "\f431";
+        }
+      }
+
+      a:hover {
+        &:before {
+          color: var(--color-text-foreground-light);
+        }
+      }
+    }
+  }
+}
+
+// DESKTOP styles for the navigation
+@include media-breakpoint-up($mobile-menu-breakpoint) {
+  .page-header {
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    padding-top: var(--header-padding);
+    padding-bottom: var(--header-padding);
+
+    .page-header__branding {
+      height: var(--header-height);
+    }
+
+    .page-header__navigation {
+      flex-grow: 1;
+
+      .region-primary-menu,
+      .region-secondary-menu {
         display: flex;
         align-items: center;
         justify-content: end;
-        margin: 0;
-        padding: 0;
+        height: calc(var(--header-height) / 2);
+
+        // Resets that apply to all menus
+        // ******************************************
+        ul.menu {
+          display: flex;
+          align-items: center;
+          justify-content: end;
+          margin: 0;
+          padding: 0;
+
+          li.menu-item {
+            margin-left: 1em;
+            list-style-type: none;
+            list-style-image: none;
+            padding: 0;
+            margin: 0;
+            margin-left: 1em;
+
+            a {
+              color: var(--color-text-foreground);
+              text-decoration: none;
+              display: block;
+              line-height: 100%; // make the links 1em in height to allow precise control of dimensions
+
+              &:hover,
+              &.is-active {
+                text-decoration: underline;
+                color: var(--color--text-foreground-light);
+              }
+            }
+
+            // Hide the second-level menu by default
+            > ul.menu {
+
+              // Hide menu levels further down
+              ul.menu {
+                display: none;
+              }
+            }
+          }
+        }
+
+        // Main menu
+        // ******************************************
+        .menu--main {
+          flex-grow: 1;
+
+          // First level items
+          > ul.menu {
+            > li.menu-item {
+              padding: 0 calc(var(--main-menu-link-spacing-x) / 4);
+              margin: 0 calc(var(--main-menu-link-spacing-x) / 4);
+              border-top-left-radius: var(--menu-item-border-radius);
+              border-top-right-radius: var(--menu-item-border-radius);
+              color: var(--color-text-foreground-light);
+
+              &:last-child {
+                margin-right: calc(var(--main-menu-link-spacing-x) / 4 * -1);
+              }
+
+              > a {
+                box-sizing: border-box;
+                text-decoration: none;
+                border-bottom: var(--main-menu-active-border-weight) solid transparent;
+                padding: calc(var(--main-menu-link-spacing-x) / 4) 0;
+
+                &.is-active {
+                  border-bottom-color: var(--color-accent-50);
+                }
+              }
+            }
+
+            // Second level menus
+            > li.menu-item--expanded {
+
+              cursor: pointer;
+
+              // Make the parent item the frame of reference for the submenu
+              position: relative;
+              padding-right: calc(var(--main-menu-caret-icon-size) + (var(--main-menu-link-spacing-x) / 4));
+
+              // Add the caret icon
+              @include fa-icon-element(1em, var(--fa-style-family-classic));
+              &:before {
+                transition: transform 0.25s;
+                position: absolute;
+                right: calc(var(--main-menu-link-spacing-x) / 4);
+                top: 50%;
+                margin-top: calc(var(--main-menu-caret-icon-size) / 2 * -1);
+                pointer-events: none;
+                content: "\f0d7";
+              }
+
+              > ul.menu {
+                display: block;
+                position: absolute;
+                right: 0;
+                transition: opacity 0.25s, transform 0.15s;
+                transform: translateY(-50px);
+                opacity: 0;
+                pointer-events: none;
+                min-width: var(--main-menu-submenu-min-width);
+                box-shadow: 0 0 var(--main-menu-submenu-shadow-blur) var(--color-primary-30);
+                background-color: var(--color-text-background);
+                border: 1px solid var(--color-primary-20);
+                border-radius: var(--menu-item-border-radius);
+                border-top-right-radius: 0;
+                padding: calc(var(--main-menu-link-spacing-x) / 2);
+
+                > li.menu-item {
+                  padding: calc(var(--main-menu-link-spacing-x) / 4);
+                  margin: calc(var(--main-menu-link-spacing-x) / 4);
+
+                  &:hover {
+                    background-color: var(--color-primary-10);
+                  }
+
+                  &:first-child {
+                    margin-top: 0;
+                  }
+
+                  &:last-child {
+                    margin-bottom: 0;
+                  }
+                }
+              }
+            }
+
+            > li.menu-item--expanded.js-open {
+              background-color: var(--color-primary-20);
+              color: var(--color-text-foreground);
+
+              &:before {
+                transform: rotate(180deg);
+              }
+
+              > ul.menu {
+                opacity: 1;
+                transform: translateY(0);
+                pointer-events: all;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .page-header__navigation-toggler {
+      // Override the display and positioning set by fa-square-icon
+      display: none;
+    }
+  }
+}
+
+// MOBILE styles for the navigation
+@include media-breakpoint-down($mobile-menu-breakpoint) {
+  .page-header {
+    display: block;
+    padding-top: var(--header-padding-mobile);
+    padding-bottom: var(--header-padding-mobile);
+    position:relative; // allow nav toggler to use absolute positioning
+
+    // Create an element so the box shadow
+    // can be on top of child elements
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: transparent;
+      pointer-events: none;
+      box-shadow: 0 0 10px transparent;
+      transition: box-shadow 0.25s;
+    }
+
+    .page-header__branding {
+      height: calc(var(--header-height-mobile));
+    }
+
+    .page-header__navigation {
+      position: fixed;
+      left: 91vw;
+      top: calc(var(--header-height-mobile) + (var(--header-padding-mobile) * 2));
+      height: calc(100vh - (var(--header-height-mobile) + (var(--header-padding-mobile) * 2)));
+      width: 90vw;
+      opacity: 0;
+      transition: left 0.15s, opacity 0.15s;
+      background-color: var(--color-white);
+      border-left: 2px solid var(--color-primary-20);
+
+      // DEBUG:
+      // left: 10vw;
+      // opacity: 1;
+
+      .navbar--secondary {
+        padding: 1em 0;
+        background-color: var(--color-primary-10);
+      }
+
+      // User menu
+      // *************************************
+      .menu--account ul.menu {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: end;
 
         li.menu-item {
-          margin-left: 1em;
-          list-style-type: none;
-          list-style-image: none;
-          padding: 0;
-          margin: 0;
-          margin-left: 1em;
+          margin: 0 0.5em;
+          padding: 0.25em 0.5em;
+          border: 1px solid var(--color-primary-20);
+          border-radius: var(--menu-item-border-radius);
+
+          &:first-child {
+            margin-left: 0;
+          }
 
           a {
             color: var(--color-text-foreground);
             text-decoration: none;
             display: block;
             line-height: 100%; // make the links 1em in height to allow precise control of dimensions
-
-            &:hover,
-            &.is-active {
-              text-decoration: underline;
-              color: var(--color--text-foreground-light);
-            }
           }
 
-          // Hide the second-level menu by default
-          > ul.menu {
+          &:hover,
+          &.is-active {
+            background-color: var(--color-primary-10);
 
-            // Hide menu levels below this
-            ul.menu {
-              display: none;
-            }
+             a {
+              color: var(--color--text-foreground-light);
+             }
           }
         }
       }
 
-
-      // User account menu
-      // ******************************************
-
-      // Social networks menu (secondary)
-      // ******************************************
-      .menu--secondary-navigation {
+      // Social networks menu
+      // *************************************
+      .menu--secondary-navigation ul.menu {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: end;
 
         li.menu-item {
-          margin: 0 calc(var(--social-media-icons-size) / 2);
+          margin: 0 0.5em;
 
-          a {
-            @include fa-square-icon(1.25rem, var(--fa-style-family-brands));
-
-            &.facebook:before {
-              content: "\f082";
-            }
-
-            &.instagram:before {
-              content: "\f16d";
-            }
-
-            &.twitter:before {
-              content: "\f081";
-            }
-
-            &.linkedin:before {
-              content: "\f08c";
-            }
-
-            &.mastodon:before {
-              content: "\f4f6";
-            }
-
-            &.vimeo:before {
-              content: "\f194";
-            }
-
-            &.youtube:before {
-              content: "\f431";
-            }
+          &:first-child {
+            margin-left: 0;
           }
         }
       }
+
 
       // Main menu
-      // ******************************************
-      .menu--main {
-        flex-grow: 1;
+      // *************************************
+      .menu--main ul.menu {
+        margin-left: 2em;
 
-        // First level items
-        > ul.menu {
-          > li.menu-item {
-            padding: 0 calc(var(--main-menu-link-spacing-x) / 4);
-            margin: 0 calc(var(--main-menu-link-spacing-x) / 4);
-            border-top-left-radius: var(--main-menu-border-radius);
-            border-top-right-radius: var(--main-menu-border-radius);
-            color: var(--color-text-foreground-light);
-
-            &:last-child {
-              margin-right: calc(var(--main-menu-link-spacing-x) / 4 * -1);
-            }
-
-            > a {
-              box-sizing: border-box;
-              text-decoration: none;
-              border-bottom: var(--main-menu-active-border-weight) solid transparent;
-              padding: calc(var(--main-menu-link-spacing-x) / 4) 0;
-
-              &.is-active {
-                border-bottom-color: var(--color-accent-50);
-              }
-            }
-          }
-
-          // Second level menus
-          > li.menu-item--expanded {
-
-            cursor: pointer;
-
-            // Make the parent item the frame of reference for the submenu
-            position: relative;
-            padding-right: calc(var(--main-menu-caret-icon-size) + (var(--main-menu-link-spacing-x) / 4));
-
-            // Add the caret icon
-            @include fa-icon-element(1em, var(--fa-style-family-classic));
-            &:before {
-              transition: transform 0.25s;
-              position: absolute;
-              right: calc(var(--main-menu-link-spacing-x) / 4);
-              top: 50%;
-              margin-top: calc(var(--main-menu-caret-icon-size) / 2 * -1);
-              pointer-events: none;
-              content: "\f0d7";
-            }
-
-            > ul.menu {
-              display: block;
-              position: absolute;
-              right: 0;
-              transition: opacity 0.25s, transform 0.15s;
-              transform: translateY(-50px);
-              opacity: 0;
-              pointer-events: none;
-              min-width: var(--main-menu-submenu-min-width);
-              box-shadow: 0 0 var(--main-menu-submenu-shadow-blur) var(--color-primary-30);
-              background-color: var(--color-text-background);
-              border: 1px solid var(--color-primary-20);
-              border-radius: var(--main-menu-border-radius);
-              border-top-right-radius: 0;
-              padding: calc(var(--main-menu-link-spacing-x) / 2);
-
-              > li.menu-item {
-                padding: calc(var(--main-menu-link-spacing-x) / 4);
-                margin: calc(var(--main-menu-link-spacing-x) / 4);
-
-                &:hover {
-                  background-color: var(--color-primary-10);
-                }
-
-                &:first-child {
-                  margin-top: 0;
-                }
-
-                &:last-child {
-                  margin-bottom: 0;
-                }
-              }
-            }
-          }
-
-          > li.menu-item--expanded.is-open {
-            background-color: var(--color-primary-20);
+        li.menu-item {
+          a {
             color: var(--color-text-foreground);
 
-            &:before {
-              transform: rotate(180deg);
+            &:hover {
+              color: var(--color-text-foreground-light);
             }
+          }
 
-            > ul.menu {
-              opacity: 1;
-              transform: translateY(0);
-              pointer-events: all;
-            }
+          ul.menu {
+            margin-left: 1em;
           }
         }
       }
     }
-  }
 
-  .page-header__navigation-toggler {
-    position: absolute;
-    top: 20px;
-    right: 20px;
+    .page-header__navigation-toggler {
+      $toggler-icon-size: 1.5em;
 
-    @include fa-square-icon(1.25rem, var(--fa-style-family-classic));
-    &:before {
-      content: "\f0c9";
-    }
-
-    // Override the display set by fa-square-icon
-    display: none;
-  }
-
-  // Add the debug class to the .page-header component to
-  // see outlines and make layout style development easier
-  &.debug {
-    .region {
-      outline: thin dotted red;
-    }
-
-    ul.menu {
-      outline: thin dotted blue;
-      background-color: rgba(0, 0, 255, .2);
-
-      li.menu-item {
-        outline: thin dotted green;
-        background-color: rgba(0, 255, 0, .2);
+      @include fa-square-icon($toggler-icon-size, var(--fa-style-family-classic));
+      &:before {
+        content: "\f0c9";
       }
+
+      display: block;
+      position: absolute;
+      top: 50%;
+      margin-top: calc($toggler-icon-size / 2 * -1);
+      right: 20px;
+    }
+  }
+
+  .page-header.js-mobile-menu-open {
+    .page-header__navigation {
+      left: 10vw;
+      opacity: 1;
+    }
+
+    // Create an element so the box shadow
+    // can be on top of child elements
+    &:after {
+      box-shadow: 0 0 10px var(--color-primary-30);
+    }
+  }
+
+  body.toolbar-vertical .page-header__navigation {
+    top: calc(var(--header-height-mobile) + (var(--header-padding-mobile) * 2) + 39px); // Add space for the toolbar
+  }
+}
+
+// Add the debug class to the .page-header component to
+// see outlines and make layout style development easier
+.page-header.debug {
+  .region {
+    outline: thin dotted red;
+  }
+
+  ul.menu {
+    outline: thin dotted blue;
+    background-color: rgba(0, 0, 255, .2);
+
+    li.menu-item {
+      outline: thin dotted green;
+      background-color: rgba(0, 255, 0, .2);
     }
   }
 }
