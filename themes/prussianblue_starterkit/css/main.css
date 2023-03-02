@@ -65,6 +65,11 @@ small, .text_small {
 }
 
 :root {
+  --color-text-background: #f3f4f7;
+  --color-text-foreground: #293241;
+  --color-text-foreground-light: #50627f;
+  --color-white: #fdfdfd;
+  --color-black: #040507;
   --color-primary-10: #e9eef5;
   --color-primary-20: #b8c8dd;
   --color-primary-30: #87a3c6;
@@ -83,11 +88,6 @@ small, .text_small {
   --color-accent-70: #9e2b0f;
   --color-accent-80: #5d1909;
   --color-accent-90: #1d0803;
-  --color-text-background: #f3f4f7;
-  --color-text-foreground: #293241;
-  --color-text-foreground-light: #50627f;
-  --color-white: #f3f4f7;
-  --color-black: #040507;
 }
 
 /*# sourceMappingURL=main.css.map */
