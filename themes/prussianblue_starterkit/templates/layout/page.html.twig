@@ -69,7 +69,11 @@ regions:
   {% endembed %}
 
 
-  {{ page.breadcrumb }}
+  {% embed "breadcrumb"%}
+    {% block breadcrumb %}
+      {{ page.breadcrumb }}
+    {% endblock %}
+  {% endembed %}
 
   {{ page.highlighted }}
 

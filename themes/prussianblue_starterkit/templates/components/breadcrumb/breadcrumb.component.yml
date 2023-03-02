@@ -1,0 +1,11 @@
+$schema: https://git.drupalcode.org/project/cl_components/-/raw/1.x/src/metadata.schema.json
+machineName: breadcrumb
+name: Breadcrumb
+status: BETA
+libraryDependencies:
+  - core/once
+componentType: organism
+schemas:
+  props:
+    type: object
+

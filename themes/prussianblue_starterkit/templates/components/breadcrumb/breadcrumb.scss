@@ -1,0 +1,16 @@
+@import "../../../scss/utilities/bootstrap-integration.scss";
+
+.breadcrumb__wrapper {
+  @include wide-container();
+
+  .breadcrumb {
+    background-color: var(--color-primary-10);
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+
+    a {
+      color: var(--color-text-light);
+    }
+  }
+}
